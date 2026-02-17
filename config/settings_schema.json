@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand"
+      },
+      {
+        "type": "text",
+        "id": "brand_tagline",
+        "label": "Tagline",
+        "default": "Subscription hat club"
+      },
+      {
+        "type": "url",
+        "id": "primary_cta_link",
+        "label": "Primary CTA link",
+        "default": "/collections/all"
+      },
+      {
+        "type": "text",
+        "id": "primary_cta_label",
+        "label": "Primary CTA label",
+        "default": "Subscribe"
+      }
+    ]
+  }
+]

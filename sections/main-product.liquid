@@ -1,0 +1,47 @@
+<section class="section">
+  <div class="container">
+    <div class="card" style="padding:22px;">
+      <div class="pill">Product</div>
+      <h1 style="margin:10px 0 8px;font-size:34px;letter-spacing:-.02em;">{{ product.title }}</h1>
+      <div style="color:var(--muted);margin-bottom:12px;">{{ product.vendor }}</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;">
+        <div class="card" style="padding:16px;background:rgba(0,0,0,.18);">
+          <div style="height:320px;border-radius:16px;border:1px dashed rgba(255,255,255,.2);display:grid;place-items:center;color:rgba(255,255,255,.65);">
+            Product media
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:22px;font-weight:800;margin-bottom:12px;">{{ product.price | money }}</div>
+
+          {% form 'product', product %}
+            {% if product.has_only_default_variant == false %}
+              <label class="pill" style="margin-bottom:8px;">Choose an option</label>
+              <select name="id" class="card" style="width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.2);color:var(--fg);">
+                {% for variant in product.variants %}
+                  <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+                    {{ variant.title }} — {{ variant.price | money }}
+                  </option>
+                {% endfor %}
+              </select>
+            {% else %}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            {% endif %}
+
+            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+              <button type="submit" class="btn btn--primary" {% unless product.available %}disabled{% endunless %}>
+                {% if product.available %}Add to cart{% else %}Sold out{% endif %}
+              </button>
+              <a class="btn" href="{{ routes.all_products_collection_url }}">Back to shop</a>
+            </div>
+
+            <p class="small" style="color:var(--muted);margin-top:10px;">To enable subscriptions, add a subscription app in Shopify and configure this product as a subscription product.</p>
+          {% endform %}
+
+          <div style="margin-top:18px;color:var(--muted);line-height:1.6;">{{ product.description }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<section class="section">
+  <div class="container">
+    <div class="card" style="padding:22px;">
+      <div class="pill">Shop</div>
+      <h1 style="margin:10px 0 18px;font-size:34px;letter-spacing:-.02em;">{{ collection.title }}</h1>
+
+      {% if collection.products_count == 0 %}
+        <p style="color:var(--muted);">No products yet. Add your subscription product in Shopify and it’ll appear here.</p>
+      {% else %}
+        <div class="grid3">
+          {% for product in collection.products %}
+            <a class="card tile" href="{{ product.url }}" style="display:block;">
+              <div class="pill">{{ product.price | money }}</div>
+              <h3 style="margin-top:10px;">{{ product.title }}</h3>
+              <p>{{ product.description | strip_html | truncate: 90 }}</p>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

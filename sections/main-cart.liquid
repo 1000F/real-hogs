@@ -1,0 +1,39 @@
+<section class="section">
+  <div class="container">
+    <div class="card" style="padding:22px;">
+      <div class="pill">Cart</div>
+      <h1 style="margin:10px 0 18px;font-size:34px;letter-spacing:-.02em;">Your cart</h1>
+
+      {% if cart.item_count == 0 %}
+        <p style="color:var(--muted);">Your cart is empty.</p>
+        <div style="margin-top:14px;">
+          <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">Shop</a>
+        </div>
+      {% else %}
+        <form action="{{ routes.cart_url }}" method="post" novalidate>
+          <div style="display:grid;gap:12px;">
+            {% for item in cart.items %}
+              <div class="card" style="padding:14px;background:rgba(0,0,0,.18);">
+                <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+                  <div>
+                    <div style="font-weight:750;">{{ item.product.title }}</div>
+                    <div class="small" style="color:var(--muted);margin-top:4px;">{{ item.variant.title }}</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-weight:750;">{{ item.final_line_price | money }}</div>
+                    <div class="small" style="color:var(--muted);">Qty: {{ item.quantity }}</div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <div style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+            <div style="font-size:18px;font-weight:800;">Total: {{ cart.total_price | money }}</div>
+            <button class="btn btn--primary" type="submit" name="checkout">Checkout</button>
+          </div>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+</section>

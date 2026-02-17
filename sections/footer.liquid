@@ -1,0 +1,23 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__row">
+      <div>
+        <div class="brand" style="margin-bottom:10px;">
+          {% render 'mark' %}
+          <strong>{{ shop.name }}</strong>
+        </div>
+        <div class="small">Subscription hat club. Built on Shopify.</div>
+      </div>
+
+      <div style="display:flex;gap:18px;flex-wrap:wrap;">
+        <a href="{{ routes.search_url }}">Search</a>
+        <a href="{{ routes.policies.privacy_policy.url }}">Privacy</a>
+        <a href="{{ routes.policies.refund_policy.url }}">Refunds</a>
+        <a href="{{ routes.policies.shipping_policy.url }}">Shipping</a>
+        <a href="{{ routes.policies.terms_of_service.url }}">Terms</a>
+      </div>
+    </div>
+
+    <div class="small" style="margin-top:18px;opacity:.9;">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</div>
+  </div>
+</footer>

@@ -1,0 +1,21 @@
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+        {% render 'mark' %}
+        <span>{{ shop.name }}</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a href="{{ routes.all_products_collection_url }}">Shop</a>
+      </nav>
+
+      <div style="display:flex;gap:10px;align-items:center;">
+        <a class="btn btn--ghost" href="{{ routes.cart_url }}">Cart</a>
+        <a class="btn btn--primary" href="{{ routes.all_products_collection_url }}">Subscribe</a>
+      </div>
+    </div>
+  </div>
+</header>
